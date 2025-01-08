@@ -1,0 +1,14 @@
+{
+  "importOrder": [
+    "^react$",
+    "^react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": false,
+  "singleQuote": true,
+  "semi": false,
+  "endOfLine": "auto"
+}
