@@ -1,11 +1,11 @@
-import { Image, View, StyleSheet, Text } from "react-native";
+import { Image, View, StyleSheet } from 'react-native'
 
 export default function Header() {
   return (
     <View style={styles.header}>
       <Image source={require('../../../assets/smallLogo.png')} />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 16,
   },
-});
+})

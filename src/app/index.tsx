@@ -1,23 +1,29 @@
-import { Link } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Link } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import { Image, StyleSheet, Text, View } from 'react-native'
 // import Header from '../components/header/Header';
 
 export default function App() {
   return (
     <View style={styles.mainContainer}>
-      <StatusBar
-      backgroundColor='#0083C0'
-      style='light'
-      />
+      <StatusBar backgroundColor="#0083C0" style="light" />
       <Image source={require('../../assets/largeLogo.png')} />
       <View style={styles.linkContainer}>
-        <Link style={styles.linkButton} href={'/product'}><Text style={styles.baseText}>Buscar por produto</Text><Image style={{alignSelf:'center', width: 25}} source={require('../../assets/font-icons/search-icon.png')} /></Link>
-        <Link style={styles.linkButton} href={'/contactus'}><Text style={styles.baseText}>Fale com a gente</Text><Image source={require('../../assets/font-icons/arrow-right.png')} /></Link>
+        <Link style={styles.linkButton} href={'/product'}>
+          <Text style={styles.baseText}>Buscar por produto</Text>
+          <Image
+            style={{ alignSelf: 'center', width: 25 }}
+            source={require('../../assets/font-icons/search-icon.png')}
+          />
+        </Link>
+        <Link style={styles.linkButton} href={'/contactus'}>
+          <Text style={styles.baseText}>Fale com a gente</Text>
+          <Image source={require('../../assets/font-icons/arrow-right.png')} />
+        </Link>
       </View>
-       {/* <Header /> */}
+      {/* <Header /> */}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -38,7 +44,6 @@ const styles = StyleSheet.create({
   },
   linkButton: {
     display: 'flex',
-    textAlign: 'center',
     backgroundColor: '#00C1B4',
     color: '#FFF',
     padding: 16,
@@ -51,5 +56,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 'auto',
     fontWeight: 'bold',
-  }
-});
+  },
+})
