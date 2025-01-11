@@ -1,6 +1,7 @@
 import { Link } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { FontAwesome, Feather } from '@expo/vector-icons'
 
 export default function App() {
   return (
@@ -16,18 +17,13 @@ export default function App() {
             <Link style={styles.linkButton} href={'/product'}>
               <View style={styles.linkContent}>
                 <Text style={styles.baseText}>Buscar por produto</Text>
-                <Image
-                  style={{ width: 25 }}
-                  source={require('../../assets/font-icons/search-icon.png')}
-                />
+                <FontAwesome size={16} color={'#FFF'} name='search' />
               </View>
             </Link>
             <Link style={styles.linkButton} href={'/contactus'}>
               <View style={styles.linkContent}>
                 <Text style={styles.baseText}>Fale com a gente</Text>
-                <Image
-                  source={require('../../assets/font-icons/arrow-right.png')}
-                />
+                <Feather size={20} color={'#FFF'} name='arrow-right' />
               </View>
             </Link>
           </View>
@@ -42,7 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   linkContainer: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
@@ -50,7 +45,6 @@ const styles = StyleSheet.create({
     width: '75%',
   },
   linkButton: {
-    display: 'flex',
     textAlign: 'center',
     backgroundColor: '#00C1B4',
     color: '#FFF',
@@ -65,7 +59,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   linkContent: {
-    display: 'flex',
     flexDirection: 'row',
     gap: 4,
     alignItems: 'center',

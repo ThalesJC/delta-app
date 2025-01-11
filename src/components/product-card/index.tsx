@@ -1,4 +1,6 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import { Feather } from '@expo/vector-icons'
+
 
 interface IProductCardProps {
   id: string
@@ -40,9 +42,7 @@ export default function ProductCard({
       </View>
       <View style={styles.dateContainer}>
         <Text style={styles.lateDate}>{`De ${date} a ${date}`}</Text>
-        <Image
-          source={require('../../../assets/font-icons/chevron-right.png')}
-        />
+        <Feather size={24} color={'#333'} name="chevron-right" />
       </View>
     </View>
   )
@@ -74,14 +74,12 @@ const styles = StyleSheet.create({
     borderColor: '#ebebeb',
   },
   dataContainer: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     gap: 16,
   },
   dateContainer: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',

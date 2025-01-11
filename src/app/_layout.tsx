@@ -11,7 +11,7 @@ export default function Layout() {
         headerTintColor: '#fff',
         headerBackButtonDisplayMode: 'minimal',
         headerShown: true,
-        headerTitle: (props) => (
+        headerTitle: () => (
           <Image source={require('../../assets/smallLogo.png')} />
         ),
       }}

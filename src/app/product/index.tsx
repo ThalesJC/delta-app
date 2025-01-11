@@ -1,40 +1,54 @@
-import { StyleSheet, View } from 'react-native'
-import ProductCard from '../../components/product-card/index'
-import SearchBar from '../../components/search-bar'
-// import response from '../../../MOCK/MOCK_DATA.json'
+import { useEffect, useState } from 'react'
 
-const response = [
-  {
-    id: '1',
-    name: 'Produto 1',
-    distance: '10',
-    status: true,
-    date: '10/10/2021',
-  },
-  {
-    id: '2',
-    name: 'Produto 2',
-    distance: '20',
-    status: false,
-    date: '12/10/2021',
-  },
-]
+import { FlatList, Modal, StyleSheet, View } from 'react-native'
+
+import ProductCard from '../../components/product-card'
+import SearchBar from '../../components/search-bar'
+import { fetchApi } from '../../server'
+import FilterModal from '../../components/filter-modal'
+
+interface IProduct {
+  id: string
+  name: string
+  distance: string
+  status: boolean
+  date: string
+}
 
 export default function Product() {
+  const [response, setResponse] = useState<IProduct[]>([])
+  const [openModal, setOpenModal] = useState(false)
+
+  useEffect(() => {
+    fetchApi().then((responseApi) => {
+      if (!responseApi) {
+        console.log('Erro ao carregar os dados.')
+      }
+      setResponse(responseApi)
+    })
+  }, [])
+
   return (
     <View style={styles.container}>
-      <SearchBar />
-      {response.map((product, index) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          distance={product.distance}
-          status={product.status}
-          date={product.date}
-          index={index}
-        />
-      ))}
+      <SearchBar openModal={setOpenModal} />
+      <FlatList
+        data={response}
+        contentContainerStyle={{ gap: 16 }}
+        renderItem={({ item, index }) => (
+          <ProductCard
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            distance={item.distance}
+            status={item.status}
+            date={item.date}
+            index={index}
+          />
+        )}
+      />
+      <Modal visible={openModal} animationType="slide" transparent={true}>
+        <FilterModal openModal={setOpenModal} />
+      </Modal>
     </View>
   )
 }
