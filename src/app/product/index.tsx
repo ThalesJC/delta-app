@@ -12,8 +12,14 @@ interface IProduct {
   id: string
   name: string
   distance: string
-  status: boolean
-  date: string
+  status: boolean | undefined
+  date: string | Date
+}
+
+interface Filters {
+  name?: string
+  status?: boolean | undefined
+  date?: string | Date
 }
 
 interface FetchParams {
@@ -21,17 +27,7 @@ interface FetchParams {
   pageSize: number
   sortBy?: 'name' | 'status' | 'date'
   sortOrder?: 'asc' | 'desc'
-  filters?: {
-    name?: string
-    status?: boolean
-    date?: string
-  }
-}
-
-interface Filters {
-  name: string
-  status: boolean | undefined
-  date: string
+  filters?: Filters
 }
 
 export default function Product() {
@@ -53,21 +49,24 @@ export default function Product() {
     filters,
   }
 
-  const handleFilters = ({name, status, date}: Filters) => {
-    console.log('entrou em filters', filters);
-    
+  // TODO: Revisar
+  const handleFilterProductsById = (id: string) => {
+    setProducts(products.filter((product) => id.includes(product.id)))
+  }
+
+  const handleFilters = ({ name, status, date }: Filters) => {
     setFilters({
       name,
       status,
-      date
+      date: date === new Date() ? '' : date?.toLocaleString().split(' ')[0],
     })
+
+    setPage(1)
+    setProducts([])
   }
 
   const handleGetData = async () => {
-    console.log('chamei getData');
-    
     setLoading(true)
-
     const response = await fetchApi(params)
     setProducts([...products, ...response?.data])
     setPage(page + 1)
@@ -76,8 +75,6 @@ export default function Product() {
 
   useEffect(() => {
     handleGetData()
-    console.log('useEffect', filters);
-    
   }, [filters])
 
   return (
@@ -111,7 +108,7 @@ export default function Product() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     gap: 16,
     backgroundColor: '#fff',
   },

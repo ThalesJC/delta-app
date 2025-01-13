@@ -15,8 +15,8 @@ interface FetchParams {
   sortOrder?: 'asc' | 'desc'
   filters?: {
     name?: string
-    status?: boolean
-    date?: string
+    status?: boolean | undefined
+    date?: string | Date
   }
 }
 

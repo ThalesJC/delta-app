@@ -6,8 +6,8 @@ interface IProductCardProps {
   id: string
   name: string
   distance: string
-  status: boolean
-  date: string
+  status: boolean | undefined
+  date: string | Date
   index: number
 }
 

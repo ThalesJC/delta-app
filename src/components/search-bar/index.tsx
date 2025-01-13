@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { FontAwesome, Feather } from '@expo/vector-icons'
+import { useForm, Controller } from 'react-hook-form'
 
 interface SearchBarProps {
   openModal: Dispatch<SetStateAction<boolean>>
 }
 
 export default function SearchBar({ openModal }: SearchBarProps) {
-  const [searchText, setSearchText] = useState('')
+  const { control, watch } = useForm({})
 
   return (
     <View style={styles.container}>
@@ -23,10 +24,16 @@ export default function SearchBar({ openModal }: SearchBarProps) {
           <Text style={styles.searchTextLabel}>Pesquise por ID</Text>
           <View style={styles.searchTextInputContainer}>
             <FontAwesome size={16} color={'#545454'} name="search" />
-            <TextInput
-              value={searchText}
-              onChangeText={setSearchText}
-              placeholder="Pesquisar"
+            <Controller
+              control={control}
+              name='searchText'
+              render={({ field: { onChange, value}}) => (
+                <TextInput
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder="Pesquisar"
+                />
+              )}
             />
           </View>
         </View>
